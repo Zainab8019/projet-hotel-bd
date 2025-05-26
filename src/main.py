@@ -12,8 +12,7 @@ def create_connection():
     os.makedirs('data', exist_ok=True)  # Crée le dossier s'il n'existe pas
     db_path = os.path.join('data', 'hotel.db')
     conn = sqlite3.connect(db_path)
-    # Pour accéder aux colonnes par nom
-    conn.row_factory = sqlite3.Row  
+    conn.row_factory = sqlite3.Row  # Pour accéder aux colonnes par nom
     return conn
 
 # Initialisation de la base de données
@@ -297,7 +296,7 @@ def main():
 
         if st.button("Rechercher"):
             chambres_dispo = conn.execute('''
-            SELECT c.Numero, c.Etage, tc.Type, tc.Tarif, h.Ville, c.Fumeur
+            SELECT c.Numero, c.Etage, tc.Type, tc.Tarif, h.Ville, c.Fumeur, c.Id_Hotel
             FROM Chambre c
             JOIN Type_Chambre tc ON c.Id_Type = tc.Id_Type
             JOIN Hotel h ON c.Id_Hotel = h.Id_Hotel
