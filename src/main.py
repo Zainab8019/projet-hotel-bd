@@ -12,7 +12,8 @@ def create_connection():
     os.makedirs('data', exist_ok=True)  # Crée le dossier s'il n'existe pas
     db_path = os.path.join('data', 'hotel.db')
     conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row  # Pour accéder aux colonnes par nom
+    # Pour accéder aux colonnes par nom
+    conn.row_factory = sqlite3.Row  
     return conn
 
 # Initialisation de la base de données
